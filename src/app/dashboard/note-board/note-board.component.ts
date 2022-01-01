@@ -9,9 +9,24 @@ import { Note } from 'src/app/models/note.model';
   host: { 'class': 'grid gap-8', 'style': 'grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));' }
 })
 export class NoteBoardComponent implements OnInit {
-  note: Note = new Note({
-    content: 'Moja prvá poznámka',
-  });
+  notes: Note[] = [
+    new Note({
+      content: 'Moja prvá poznámka',
+    }),
+    new Note({
+      content: 'Test poznámka',
+    }),
+    new Note({
+      content: 'Bla bla',
+    }),
+    new Note({
+      content: `Toto je strašne dlhá poznámka.
+      Aj cez dva riadky`,
+    }),
+    new Note({
+      content: 'Bla bla',
+    }),
+  ]
 
   constructor() { }
 
