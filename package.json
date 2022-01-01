@@ -5,10 +5,10 @@
     "ng": "ng",
     "server:start": "node ./server/app.js",
     "server:serve": "nodemon ./server/app.js",
-    "app:spart": "ng serve",
-    "app:build": "ng build",
-    "app:watch": "ng build --watch --configuration development",
-    "app:test": "ng test"
+    "app:serve": "ng build --configuration=development --aot=false --progress=true --watch --output-path=dist --delete-output-path=false",
+    "app:build": "ng build --configuration=development --aot=true --progress=true --watch --output-path=dist --delete-output-path=true",
+    "app:test": "ng test",
+    "heroku-postbuild": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
