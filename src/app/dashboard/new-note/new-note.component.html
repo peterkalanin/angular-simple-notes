@@ -9,11 +9,12 @@
     shadow-xl
     bg-white
     rounded-lg
-    p-8
+    px-4
     w-full
     z-10
     border border-gray-200
   "
+  [class]="isActive ? 'py-4' : 'py-2'"
 >
   <input
     *ngIf="isActive"
@@ -40,7 +41,8 @@
       text-xl
       placeholder:font-semibold
     "
-    [cols]="isActive ? 3 : 1"
+    [class]="isActive ? '' : 'max-h-11'"
+    [cols]="isActive ? 3 : 0"
     style="box-shadow: none !important"
     placeholder="Napíšte poznámku..."
   ></textarea>
