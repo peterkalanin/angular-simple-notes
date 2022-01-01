@@ -8,8 +8,8 @@
     "app:serve": "ng build --configuration=development --aot=false --progress=true --watch --output-path=dist --delete-output-path=false",
     "app:build": "ng build --configuration=production --aot=true --progress=true --output-path=dist --delete-output-path=true",
     "app:test": "ng test",
-    "heroku-postbuild": "ng build --configuration production",
-    "start": "npm run app:build; npm run server:start"
+    "heroku-postbuild": "npm run app:build",
+    "start": "npm run server:start"
   },
   "private": true,
   "dependencies": {
