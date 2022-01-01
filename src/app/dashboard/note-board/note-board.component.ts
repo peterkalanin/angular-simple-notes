@@ -11,6 +11,7 @@ import { Note } from 'src/app/models/note.model';
 export class NoteBoardComponent implements OnInit {
   notes: Note[] = [
     new Note({
+      title: 'Prvá poznámka',
       content: 'Moja prvá poznámka',
     }),
     new Note({
