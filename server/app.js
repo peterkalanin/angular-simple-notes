@@ -10,12 +10,13 @@ app.use(bodyParser.json());
 const distPath = path.join(__dirname, "../dist");
 app.use(express.static(distPath));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
-
 app.get("/api/ping", (req, res) => {
   res.status(200).json({ response: "pong" });
+});
+
+app.all("/*", function (req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendFile("index.html", { root: distPath });
 });
 
 const server = app.listen(APP_PORT, () => {
