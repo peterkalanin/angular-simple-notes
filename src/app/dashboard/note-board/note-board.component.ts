@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-note-board',
@@ -9,29 +10,16 @@ import { Note } from 'src/app/models/note.model';
   host: { 'class': 'grid gap-8', 'style': 'grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));' }
 })
 export class NoteBoardComponent implements OnInit {
-  notes: Note[] = [
-    new Note({
-      title: 'Prvá poznámka',
-      content: 'Moja prvá poznámka',
-    }),
-    new Note({
-      content: 'Test poznámka',
-    }),
-    new Note({
-      content: 'Bla bla',
-    }),
-    new Note({
-      content: `Toto je strašne dlhá poznámka.
-      Aj cez dva riadky`,
-    }),
-    new Note({
-      content: 'Bla bla',
-    }),
-  ]
+  notes: Note[] = []
 
-  constructor() { }
+  constructor(private noteService: NoteService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.noteService.model$.subscribe(notes => {
+      this.notes = notes;
+      this.cd.markForCheck();
+    });
+    this.noteService.getAll();
   }
 
 }

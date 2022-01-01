@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-new-note',
@@ -14,13 +15,13 @@ export class NewNoteComponent implements OnInit {
   @ViewChild('backdrop') backdrop!: ElementRef;
   @ViewChild('textarea') textarea!: ElementRef;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private noteService: NoteService) { }
 
   ngOnInit(): void {
 
     this.form = this.fb.group({
       title: [],
-      content: []
+      content: ['', Validators.compose([Validators.required, Validators.minLength(1)])]
     });
   }
 
@@ -28,10 +29,27 @@ export class NewNoteComponent implements OnInit {
   onGlobalClick(event: { target: any; }): void {
     if (this.isActive && this.backdrop.nativeElement.contains(event.target) && !this.textarea.nativeElement.contains(event.target)) {
       this.isActive = false;
+      this.onLeave();
     }
     if (this.textarea.nativeElement.contains(event.target)) {
       this.isActive = true;
     }
+  }
+
+  onLeave() {
+    this.createNewNote();
+  }
+
+  createNewNote() {
+    if (this.form.valid) {
+      const note = this.form.value;
+      this.noteService.crete(note);
+      this.clearForm();
+    }
+  }
+
+  clearForm() {
+    this.form.reset();
   }
 
 }
