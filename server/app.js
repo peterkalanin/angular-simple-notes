@@ -14,12 +14,22 @@ app.get("/api/ping", (req, res) => {
   res.status(200).json({ response: "pong" });
 });
 
+function uuidv4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
 const notes = [
   {
+    id: uuidv4(),
     title: "Prvá poznámka",
     content: ["Moja prvá poznámka"],
   },
   {
+    id: uuidv4(),
     content: ["Test poznámka"],
   },
 ];
@@ -30,6 +40,13 @@ app.get("/api/notes", (req, res) => {
 
 app.put("/api/notes", (req, res) => {
   const newNote = req.body;
+  newNote.id = uuidv4();
+  notes.push(newNote);
+  res.status(200).json(notes);
+});
+
+app.post("/api/note", (req, res) => {
+  const editNote = req.body;
   notes.push(newNote);
   res.status(200).json(notes);
 });
