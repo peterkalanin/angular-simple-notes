@@ -7,7 +7,7 @@ const APP_PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-const distPath = path.join(__dirname, "../dist/angular-notes");
+const distPath = path.join(__dirname, "../dist");
 app.use(express.static(distPath));
 
 app.get("/", (req, res) => {
