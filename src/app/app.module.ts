@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewNoteComponent } from './dashboard/new-note/new-note.component';
+import { NoteComponent } from './dashboard/note/note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NewNoteComponent
+    NewNoteComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
