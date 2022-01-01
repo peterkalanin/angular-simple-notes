@@ -34,10 +34,16 @@ const notes = [
   },
 ];
 
+/**
+ * Get all
+ */
 app.get("/api/notes", (req, res) => {
   res.status(200).json(notes);
 });
 
+/**
+ * Create
+ */
 app.put("/api/notes", (req, res) => {
   const newNote = req.body;
   newNote.id = uuidv4();
@@ -45,10 +51,20 @@ app.put("/api/notes", (req, res) => {
   res.status(200).json(notes);
 });
 
+/**
+ * Edit
+ */
 app.post("/api/note", (req, res) => {
   const editNote = req.body;
-  notes.push(newNote);
-  res.status(200).json(notes);
+  const findIndex = notes.findIndex((note) => note.id == editNote.id);
+  if (findIndex > -1) {
+    notes[findIndex] = editNote;
+    res.status(200).json(notes);
+  } else {
+    res.status(404).json({
+      error: "Note not found!",
+    });
+  }
 });
 
 app.all("/*", function (req, res, next) {
