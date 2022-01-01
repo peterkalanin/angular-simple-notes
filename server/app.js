@@ -14,6 +14,26 @@ app.get("/api/ping", (req, res) => {
   res.status(200).json({ response: "pong" });
 });
 
+const notes = [
+  {
+    title: "Prvá poznámka",
+    content: "Moja prvá poznámka",
+  },
+  {
+    content: "Test poznámka",
+  },
+];
+
+app.get("/api/notes", (req, res) => {
+  res.status(200).json(notes);
+});
+
+app.put("/api/notes", (req, res) => {
+  const newNote = req.body;
+  notes.push(newNote);
+  res.status(200).json(notes);
+});
+
 app.all("/*", function (req, res, next) {
   // Just send the index.html for other files to support HTML5Mode
   res.sendFile("index.html", { root: distPath });
