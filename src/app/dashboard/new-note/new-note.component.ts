@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   selector: 'app-new-note',
   templateUrl: './new-note.component.html',
   styleUrls: ['./new-note.component.scss'],
-  host: { 'class': 'flex justify-center' }
+  host: { 'class': 'flex justify-center mb-20' }
 })
 export class NewNoteComponent implements OnInit {
   form!: FormGroup;
