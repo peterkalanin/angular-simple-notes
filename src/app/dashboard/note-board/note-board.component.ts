@@ -6,7 +6,7 @@ import { Note } from 'src/app/models/note.model';
   templateUrl: './note-board.component.html',
   styleUrls: ['./note-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'grid ' }
+  host: { 'class': 'grid gap-8', 'style': 'grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));' }
 })
 export class NoteBoardComponent implements OnInit {
   note: Note = new Note({
