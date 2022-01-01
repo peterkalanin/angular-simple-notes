@@ -16,6 +16,8 @@
     <div *ngIf="note.title" class="text-gray-900 text-xl font-semibold mb-1">
       {{ note.title }}
     </div>
-    <div class="">{{ note.content }}</div>
+    <div>
+      <div *ngFor="let line of note.content">{{ line }}</div>
+    </div>
   </div>
 </div>

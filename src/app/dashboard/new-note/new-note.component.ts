@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Note } from 'src/app/models/note.model';
 import { NoteService } from 'src/app/services/note.service';
 
 @Component({
@@ -42,7 +43,8 @@ export class NewNoteComponent implements OnInit {
 
   createNewNote() {
     if (this.form.valid) {
-      const note = this.form.value;
+      const formValue = this.form.value;
+      const note: Note = { ...formValue, content: formValue.content.split('\n') };
       this.noteService.crete(note);
       this.clearForm();
     }

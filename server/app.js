@@ -17,10 +17,10 @@ app.get("/api/ping", (req, res) => {
 const notes = [
   {
     title: "Prvá poznámka",
-    content: "Moja prvá poznámka",
+    content: ["Moja prvá poznámka"],
   },
   {
-    content: "Test poznámka",
+    content: ["Test poznámka"],
   },
 ];
 
