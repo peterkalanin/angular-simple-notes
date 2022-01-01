@@ -26,7 +26,7 @@ export class NewNoteComponent implements OnInit {
 
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: { target: any; }): void {
-    if (this.backdrop.nativeElement.contains(event.target) && !this.textarea.nativeElement.contains(event.target)) {
+    if (this.isActive && this.backdrop.nativeElement.contains(event.target) && !this.textarea.nativeElement.contains(event.target)) {
       this.isActive = false;
     }
     if (this.textarea.nativeElement.contains(event.target)) {
