@@ -1,1 +1,5 @@
-<app-note *ngFor="let note of notes" [note]="note"></app-note>
+<app-note
+  *ngFor="let note of notes"
+  [note]="note"
+  (noteEdit)="onNoteEdit($event)"
+></app-note>

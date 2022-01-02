@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -12,14 +12,21 @@ import { NoteService } from 'src/app/services/note.service';
 export class NoteBoardComponent implements OnInit {
   notes: Note[] = []
 
+  @Output() noteEdit: EventEmitter<Note> = new EventEmitter<Note>();
+
   constructor(private noteService: NoteService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.noteService.model$.subscribe(notes => {
       this.notes = notes;
       this.cd.markForCheck();
+      console.log(this.notes);
     });
     this.noteService.getAll();
+  }
+
+  onNoteEdit(note: Note) {
+    this.noteEdit.emit(note);
   }
 
 }

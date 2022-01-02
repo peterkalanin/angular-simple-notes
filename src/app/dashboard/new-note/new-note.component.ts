@@ -43,8 +43,7 @@ export class NewNoteComponent implements OnInit {
 
   createNewNote() {
     if (this.form.valid) {
-      const formValue = this.form.value;
-      const note: Note = { ...formValue, content: formValue.content.split('\n') };
+      const note = new Note(this.form.value).toSubmitModel();
       this.noteService.crete(note);
       this.clearForm();
     }
