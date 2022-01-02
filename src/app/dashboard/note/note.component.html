@@ -22,7 +22,19 @@
     <div class="flex-1">
       <div *ngFor="let line of note.content">{{ line }}</div>
     </div>
-    <div #controlPanel class="flex gap-2 mt-2 -mx-2">
+    <div
+      #controlPanel
+      class="
+        flex
+        gap-2
+        mt-2
+        -mx-2
+        opacity-0
+        group-hover:opacity-100
+        duration-150
+        transition-all
+      "
+    >
       <div class="flex flex-1 gap-2"></div>
       <div class="flex flex-1 gap-2 justify-end">
         <div
@@ -34,6 +46,7 @@
             rounded-full
             p-2
           "
+          (click)="onDelete()"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +55,7 @@
             width="16"
             height="16"
             viewBox="0 0 172 172"
-            style="fill: #000000"
+            class="fill-gray-600"
           >
             <g
               fill="none"
@@ -61,7 +74,7 @@
               style="mix-blend-mode: normal"
             >
               <path d="M0,172v-172h172v172z" fill="none"></path>
-              <g fill="#000000">
+              <g fill="#4b5563">
                 <path
                   d="M71.66667,14.33333l-7.16667,7.16667h-43v14.33333h7.95052l12.77962,109.33366v0.05599c0.939,7.07108 7.07882,12.44368 14.20736,12.44368h59.111c7.12853,0 13.26835,-5.37269 14.20736,-12.44368l0.014,-0.05599l12.77962,-109.33366h7.95052v-14.33333h-43l-7.16667,-7.16667zM43.89583,35.83333h84.20833l-12.55566,107.5h-59.111z"
                 ></path>

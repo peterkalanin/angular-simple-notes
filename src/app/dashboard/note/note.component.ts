@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-note',
@@ -14,7 +15,7 @@ export class NoteComponent implements OnInit {
 
   @ViewChild('controlPanel') controlPanel!: ElementRef;
 
-  constructor() { }
+  constructor(private noteService: NoteService) { }
 
   ngOnInit(): void {
   }
@@ -28,5 +29,12 @@ export class NoteComponent implements OnInit {
       return;
     }
     this.onNoteEdit();
+  }
+
+  onDelete() {
+    if (!this.note.id) {
+      return;
+    }
+    this.noteService.delete(this.note.id);
   }
 }
