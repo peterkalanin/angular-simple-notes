@@ -44,7 +44,7 @@ app.get("/api/notes", (req, res) => {
 /**
  * Create
  */
-app.put("/api/notes", (req, res) => {
+app.put("/api/note", (req, res) => {
   const newNote = req.body;
   newNote.id = uuidv4();
   notes.push(newNote);
@@ -54,12 +54,30 @@ app.put("/api/notes", (req, res) => {
 /**
  * Edit
  */
-app.post("/api/notes", (req, res) => {
+app.post("/api/note/:id", (req, res) => {
   const editNote = req.body;
 
-  const findIndex = notes.findIndex((note) => note.id == editNote.id);
+  const findIndex = notes.findIndex((note) => note.id == req.params.id);
   if (findIndex > -1) {
     notes[findIndex] = editNote;
+    res.status(200).json(notes);
+  } else {
+    res.status(404).json({
+      error: "Note not found!",
+    });
+  }
+});
+
+/**
+ * Delete
+ */
+app.delete("/api/note/:id", (req, res) => {
+  const deleteNote = req.body;
+  console.log(id);
+
+  const findIndex = notes.findIndex((note) => note.id == req.params.id);
+  if (findIndex > -1) {
+    notes.splice(findIndex, 1);
     res.status(200).json(notes);
   } else {
     res.status(404).json({
