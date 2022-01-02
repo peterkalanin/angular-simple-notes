@@ -22,7 +22,7 @@ export class NewNoteComponent implements OnInit {
 
     this.form = this.fb.group({
       title: [],
-      content: ['', Validators.compose([Validators.required, Validators.minLength(1)])]
+      contentString: ['', Validators.compose([Validators.required, Validators.minLength(1)])]
     });
   }
 
