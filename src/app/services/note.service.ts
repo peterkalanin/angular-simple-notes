@@ -54,4 +54,20 @@ export class NoteService {
 
     return req$;
   }
+
+  update(note: Note) {
+    const path = "api/notes";
+
+    const req$ = this.http
+      .post<Note[]>(path, note)
+      .pipe(
+        share()
+      );
+
+    req$.subscribe((resp) => {
+      this.model = resp;
+    })
+
+    return req$;
+  }
 }
