@@ -56,7 +56,6 @@ export class NoteService {
   }
 
   update(note: Note) {
-    console.log(note);
     const path = "api/notes";
 
     const req$ = this.http

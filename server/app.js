@@ -56,7 +56,6 @@ app.put("/api/notes", (req, res) => {
  */
 app.post("/api/notes", (req, res) => {
   const editNote = req.body;
-  console.log(editNote);
 
   const findIndex = notes.findIndex((note) => note.id == editNote.id);
   if (findIndex > -1) {

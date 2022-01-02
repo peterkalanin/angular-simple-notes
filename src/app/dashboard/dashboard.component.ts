@@ -25,7 +25,6 @@ export class DashboardComponent implements OnInit {
 
   onModalClose(model: Note) {
     const note = new Note(model).toSubmitModel();
-    console.log(note);
     this.noteService.update(note);
   }
 

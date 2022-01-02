@@ -20,7 +20,6 @@ export class NoteBoardComponent implements OnInit {
     this.noteService.model$.subscribe(notes => {
       this.notes = notes;
       this.cd.markForCheck();
-      console.log(this.notes);
     });
     this.noteService.getAll();
   }
