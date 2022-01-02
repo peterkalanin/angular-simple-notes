@@ -40,7 +40,7 @@ export class NoteService {
   }
 
   crete(note: Note) {
-    const path = "api/notes";
+    const path = "api/note";
 
     const req$ = this.http
       .put<Note[]>(path, note)
@@ -56,10 +56,26 @@ export class NoteService {
   }
 
   update(note: Note) {
-    const path = "api/notes";
+    const path = "api/note/" + note.id;
 
     const req$ = this.http
       .post<Note[]>(path, note)
+      .pipe(
+        share()
+      );
+
+    req$.subscribe((resp) => {
+      this.model = resp;
+    })
+
+    return req$;
+  }
+
+  delete(noteId: string) {
+    const path = "api/note/" + noteId;
+
+    const req$ = this.http
+      .delete<Note[]>(path)
       .pipe(
         share()
       );
