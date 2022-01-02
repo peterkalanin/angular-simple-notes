@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
 
 @Component({
@@ -12,6 +12,8 @@ export class NoteComponent implements OnInit {
 
   @Output() noteEdit: EventEmitter<Note> = new EventEmitter<Note>();
 
+  @ViewChild('controlPanel') controlPanel!: ElementRef;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -19,5 +21,12 @@ export class NoteComponent implements OnInit {
 
   onNoteEdit() {
     this.noteEdit.emit(new Note(this.note));
+  }
+
+  onCardClick(event: any) {
+    if (this.controlPanel.nativeElement.contains(event.target)) {
+      return;
+    }
+    this.onNoteEdit();
   }
 }
