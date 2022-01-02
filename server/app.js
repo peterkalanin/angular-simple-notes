@@ -27,10 +27,12 @@ const notes = [
     id: uuidv4(),
     title: "Prvá poznámka",
     content: ["Moja prvá poznámka"],
+    color: "bg-white",
   },
   {
     id: uuidv4(),
     content: ["Test poznámka"],
+    color: "bg-white",
   },
 ];
 

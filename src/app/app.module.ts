@@ -11,6 +11,7 @@ import { NewNoteComponent } from './dashboard/new-note/new-note.component';
 import { NoteComponent } from './dashboard/note/note.component';
 import { NoteBoardComponent } from './dashboard/note-board/note-board.component';
 import { NoteModalComponent } from './dashboard/note-modal/note-modal.component';
+import { PalettePickerComponent } from './dashboard/palette-picker/palette-picker.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NoteModalComponent } from './dashboard/note-modal/note-modal.component'
     NewNoteComponent,
     NoteComponent,
     NoteBoardComponent,
-    NoteModalComponent
+    NoteModalComponent,
+    PalettePickerComponent
   ],
   imports: [
     BrowserModule,

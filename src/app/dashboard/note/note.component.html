@@ -5,16 +5,17 @@
       pb-2
       h-full
       w-full
-      bg-white
       rounded-lg
-      border border-gray-200
+      border border-transparent
       shadow
-      group-hover:shadow-xl group-hover:-translate-y-2
+      group-hover:shadow-xl
       relative
       duration-150
       transition-all
       flex flex-col
     "
+    [ngClass]="note.color || 'bg-white'"
+    [class.border-gray-200]="note.color == 'bg-white'"
   >
     <div *ngIf="note.title" class="text-gray-900 text-xl font-semibold mb-1">
       {{ note.title }}
@@ -33,27 +34,60 @@
         group-hover:opacity-100
         duration-150
         transition-all
+        relative
       "
     >
-      <div class="flex flex-1 gap-2"></div>
+      <div class="flex flex-1 gap-2">
+        <div
+          class="bg-transparent hover:bg-gray-200 rounded-full p-2"
+          (click)="onPaletePickerClick()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="24"
+            height="24"
+            viewBox="0 0 172 172"
+            style="fill: #000000"
+          >
+            <g
+              fill="none"
+              fill-rule="nonzero"
+              stroke="none"
+              stroke-width="1"
+              stroke-linecap="butt"
+              stroke-linejoin="miter"
+              stroke-miterlimit="10"
+              stroke-dasharray=""
+              stroke-dashoffset="0"
+              font-family="none"
+              font-weight="none"
+              font-size="none"
+              text-anchor="none"
+              style="mix-blend-mode: normal"
+            >
+              <path d="M0,172v-172h172v172z" fill="none"></path>
+              <g fill="#000000">
+                <path
+                  d="M80.625,10.75c-38.54882,0 -69.875,31.32618 -69.875,69.875v5.375c0,11.7998 9.7002,21.5 21.5,21.5h5.375c8.98633,0 16.125,7.13868 16.125,16.125v5.375c0,11.7998 9.7002,21.5 21.5,21.5h5.375c38.54883,0 69.875,-31.32617 69.875,-69.875c0,-38.54882 -31.32617,-69.875 -69.875,-69.875zM80.625,21.5c32.71192,0 59.125,26.41308 59.125,59.125c0,32.71192 -26.41308,59.125 -59.125,59.125h-5.375c-6.00489,0 -10.75,-4.74511 -10.75,-10.75v-5.375c0,-14.78125 -12.09375,-26.875 -26.875,-26.875h-5.375c-6.00489,0 -10.75,-4.74511 -10.75,-10.75v-5.375c0,-32.71192 26.41308,-59.125 59.125,-59.125zM75.25,32.25c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM107.5,43c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM43,53.75c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM118.25,75.25c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM96.75,107.5c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75z"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
       <div class="flex flex-1 gap-2 justify-end">
         <div
-          class="
-            none
-            group-hover:block
-            bg-transparent
-            hover:bg-gray-200
-            rounded-full
-            p-2
-          "
+          class="bg-transparent hover:bg-gray-200 rounded-full p-2"
           (click)="onDelete()"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
-            width="16"
-            height="16"
+            width="24"
+            height="24"
             viewBox="0 0 172 172"
             class="fill-gray-600"
           >
@@ -83,6 +117,12 @@
           </svg>
         </div>
       </div>
+    </div>
+    <div>
+      <app-palette-picker
+        #palettePicker
+        (colorSelect)="onColorSelect($event)"
+      ></app-palette-picker>
     </div>
   </div>
 </div>

@@ -30,7 +30,8 @@ export class NoteModalComponent implements OnInit {
     this.form = this.fb.group({
       id: [this.note.id],
       title: [this.note.title],
-      contentString: [this.note.contentString, Validators.compose([Validators.required, Validators.minLength(1)])]
+      contentString: [this.note.contentString, Validators.compose([Validators.required, Validators.minLength(1)])],
+      color: [this.note.color]
     });
   }
 
