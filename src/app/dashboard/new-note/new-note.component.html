@@ -34,7 +34,7 @@
       bg-transparent
     "
     style="box-shadow: none !important"
-    placeholder="Názov..."
+    placeholder="Title..."
   />
   <textarea
     #textarea
@@ -52,7 +52,7 @@
     [class]="isActive ? '' : 'max-h-11'"
     [cols]="isActive ? 3 : 0"
     style="box-shadow: none !important"
-    placeholder="Napíšte poznámku..."
+    placeholder="Write note..."
   ></textarea>
   <div *ngIf="isActive" #controlPanel class="w-full relative">
     <app-note-control-panel
