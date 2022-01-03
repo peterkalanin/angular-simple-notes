@@ -17,7 +17,7 @@ export class PalettePickerComponent implements OnInit {
     this.cd.markForCheck();
   }
 
-  colors: string[] = ['bg-white', 'bg-yellow-200', 'bg-orange-300', 'bg-red-300', 'bg-blue-300', 'bg-indigo-200', 'bg-teal-200', 'bg-gray-300',];
+  colors: string[] = ['bg-white', 'bg-yellow-200', 'bg-orange-300', 'bg-red-300', 'bg-blue-300', 'bg-indigo-200', 'bg-teal-200', 'bg-gray-200',];
 
   @Output() colorSelect: EventEmitter<string> = new EventEmitter<string>();
 
@@ -40,6 +40,8 @@ export class PalettePickerComponent implements OnInit {
   }
 
   onColorSelect(color: string) {
+    if (!this.show) { return; }
     this.colorSelect.emit(color);
+    this.cd.markForCheck();
   }
 }

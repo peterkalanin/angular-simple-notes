@@ -10,7 +10,7 @@ export class Note {
         this.title = params.title || '';
         this.content = params.content || [''];
         this.contentString = params.contentString || this.content.join('\n');
-        this.color = params.color || 'white';
+        this.color = params.color || 'bg-white';
     }
 
     toSubmitModel(): Note {
@@ -24,7 +24,7 @@ export class Note {
 export interface INote {
     id?: string;
     title?: string;
-    content: string[];
+    content?: string[];
     contentString?: string;
-    color: string;
+    color?: string;
 }

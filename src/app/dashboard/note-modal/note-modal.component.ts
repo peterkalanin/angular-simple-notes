@@ -66,7 +66,9 @@ export class NoteModalComponent implements OnInit {
 
   onColorSelect(color: string) {
     if (!this.note) { return; }
-
+    const colorFc = this.form.get('color');
+    if (!colorFc) { return; }
+    colorFc.setValue(color);
     this.note.color = color;
   }
 }

@@ -19,10 +19,12 @@ export class NewNoteComponent implements OnInit {
   constructor(private fb: FormBuilder, private noteService: NoteService) { }
 
   ngOnInit(): void {
+    const note = new Note({});
 
     this.form = this.fb.group({
       title: [],
-      contentString: ['', Validators.compose([Validators.required, Validators.minLength(1)])]
+      contentString: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
+
     });
   }
 

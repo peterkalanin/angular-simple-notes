@@ -18,7 +18,7 @@
       pt-5
       pb-4
       sm:p-6 sm:pb-4
-      bg-white bg-opacity-100
+      bg-opacity-100
       rounded-lg
       max-w-full
       lg:w-1/2
@@ -26,10 +26,12 @@
       w-auto
       self-center
       justify-self-center
+      shadow-xl
     "
+    [ngClass]="note?.color || 'bg-white'"
     style="grid-column: 2; grid-row: 2"
   >
-    <div class="sm:flex sm:items-start flex-col">
+    <div class="sm:flex sm:items-start flex-col relative">
       <form [formGroup]="form" class="block w-full">
         <input
           type="text"
@@ -42,6 +44,7 @@
             text-xl
             font-semibold
             mb-2
+            bg-transparent
           "
           style="box-shadow: none !important"
           placeholder="Názov..."
@@ -56,13 +59,14 @@
             outline-none
             text-xl
             placeholder:font-semibold
+            bg-transparent
           "
           (input)="onTextareaChange($event)"
           style="box-shadow: none !important"
           placeholder="Napíšte poznámku..."
         ></textarea>
       </form>
-      <div #controlPanel>
+      <div #controlPanel class="w-full">
         <app-note-control-panel
           (colorSelect)="onColorSelect($event)"
           (delete)="onDelete()"

@@ -17,15 +17,17 @@
   "
   [class.opacity-0]="!show"
   [class.opacity-100]="show"
+  [class.hidden]="!show"
+  [class.block]="show"
   (click)="onPalettePanelClick($event)"
 >
-  <ng-container *ngIf="show">
-    <div
+  <ng-container>
+    <button
       *ngFor="let color of colors"
       class="w-8 h-8 rounded-full border-gray-100"
       [class.border]="color != 'white'"
       [ngClass]="color"
       (click)="onColorSelect(color)"
-    ></div>
+    ></button>
   </ng-container>
 </div>
