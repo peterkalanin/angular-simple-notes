@@ -20,9 +20,9 @@
       sm:p-6 sm:pb-4
       bg-opacity-100
       rounded-lg
+      lg:max-w-3xl
+      md:max-w-md
       max-w-full
-      lg:w-1/2
-      md:w-2/3
       w-auto
       self-center
       justify-self-center
@@ -68,8 +68,11 @@
       </form>
       <div #controlPanel class="w-full">
         <app-note-control-panel
+          hasDelete
+          hasClose
           (colorSelect)="onColorSelect($event)"
           (delete)="onDelete()"
+          (close)="onClose()"
         >
         </app-note-control-panel>
       </div>
