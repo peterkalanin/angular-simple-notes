@@ -17,7 +17,26 @@ export class NoteControlPanelComponent implements OnInit {
     this._hasGroup = value !== undefined;
   }
 
+  private _hasDelete: boolean = false;
+  @Input()
+  public get hasDelete(): boolean {
+    return this._hasDelete;
+  }
+  public set hasDelete(value: any) {
+    this._hasDelete = value !== undefined;
+  }
+
+  private _hasClose: boolean = false;
+  @Input()
+  public get hasClose(): boolean {
+    return this._hasClose;
+  }
+  public set hasClose(value: any) {
+    this._hasClose = value !== undefined;
+  }
+
   @Output() delete: EventEmitter<void> = new EventEmitter<void>();
+  @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Output() colorSelect: EventEmitter<string> = new EventEmitter<string>();
 
   @ViewChild('palettePicker') palettePicker!: PalettePickerComponent;
@@ -37,5 +56,9 @@ export class NoteControlPanelComponent implements OnInit {
 
   onColorSelect(color: string) {
     this.colorSelect.emit(color);
+  }
+
+  onClose() {
+    this.close.emit();
   }
 }

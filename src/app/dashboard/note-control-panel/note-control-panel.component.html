@@ -20,6 +20,8 @@
         bg-opacity-25
         rounded-full
         p-2
+        w-10
+        h-10
       "
       (click)="onPaletePickerClick()"
     >
@@ -59,11 +61,14 @@
   </div>
   <div class="flex flex-1 gap-2 justify-end">
     <button
+      *ngIf="hasDelete"
       class="
         bg-transparent
         hover:bg-gray-700 hover:bg-opacity-20
         rounded-full
         p-2
+        w-10
+        h-10
       "
       (click)="onDelete()"
     >
@@ -100,6 +105,20 @@
           </g>
         </g>
       </svg>
+    </button>
+    <button
+      *ngIf="hasClose"
+      class="
+        bg-transparent
+        text-gray-600
+        hover:bg-gray-700 hover:bg-opacity-20
+        bg-opacity-25
+        rounded
+        px-4
+      "
+      (click)="onClose()"
+    >
+      <span>Zavrieť</span>
     </button>
   </div>
 </div>
