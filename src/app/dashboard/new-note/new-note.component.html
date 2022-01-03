@@ -8,13 +8,14 @@
   class="
     max-w-2xl
     shadow-xl
-    bg-white
     rounded-lg
     px-4
     w-full
     z-10
-    border border-gray-200
+    border border-transparent
   "
+  [class.border-gray-200]="note?.color == 'bg-white'"
+  [ngClass]="note?.color || 'bg-white'"
   [class]="isActive ? 'py-4' : 'py-2'"
 >
   <input
@@ -29,6 +30,8 @@
       text-xl
       font-semibold
       mb-2
+      px-0
+      bg-transparent
     "
     style="box-shadow: none !important"
     placeholder="Názov..."
@@ -42,11 +45,21 @@
       w-full
       outline-none
       text-xl
+      px-0
       placeholder:font-semibold
+      bg-transparent
     "
     [class]="isActive ? '' : 'max-h-11'"
     [cols]="isActive ? 3 : 0"
     style="box-shadow: none !important"
     placeholder="Napíšte poznámku..."
   ></textarea>
+  <div *ngIf="isActive" #controlPanel class="w-full relative">
+    <app-note-control-panel
+      hasClose
+      (colorSelect)="onColorSelect($event)"
+      (close)="onLeave()"
+    >
+    </app-note-control-panel>
+  </div>
 </form>

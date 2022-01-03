@@ -11,7 +11,8 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class NewNoteComponent implements OnInit {
   form!: FormGroup;
-  isActive: boolean = false
+  isActive: boolean = false;
+  note?: Note;
 
   @ViewChild('backdrop') backdrop!: ElementRef;
   @ViewChild('textarea') textarea!: ElementRef;
@@ -19,19 +20,18 @@ export class NewNoteComponent implements OnInit {
   constructor(private fb: FormBuilder, private noteService: NoteService) { }
 
   ngOnInit(): void {
-    const note = new Note({});
+    this.note = new Note({});
 
     this.form = this.fb.group({
-      title: [],
-      contentString: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-
+      title: [this.note.title],
+      contentString: [this.note.contentString, Validators.compose([Validators.required, Validators.minLength(1)])],
+      color: [this.note.color]
     });
   }
 
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: { target: any; }): void {
     if (this.isActive && this.backdrop.nativeElement.contains(event.target) && !this.textarea.nativeElement.contains(event.target)) {
-      this.isActive = false;
       this.onLeave();
     }
     if (this.textarea.nativeElement.contains(event.target)) {
@@ -40,7 +40,9 @@ export class NewNoteComponent implements OnInit {
   }
 
   onLeave() {
+    this.isActive = false;
     this.createNewNote();
+    this.note = new Note({});
   }
 
   createNewNote() {
@@ -53,6 +55,14 @@ export class NewNoteComponent implements OnInit {
 
   clearForm() {
     this.form.reset();
+  }
+
+  onColorSelect(color: string) {
+    if (!this.note) { return; }
+    const colorFc = this.form.get('color');
+    if (!colorFc) { return; }
+    colorFc.setValue(color);
+    this.note.color = color;
   }
 
 }
