@@ -55,4 +55,18 @@ export class NoteModalComponent implements OnInit {
     this.show = false;
     this.close.emit(this.form.value);
   }
+
+  onDelete() {
+    if (!this.note) { return; }
+    if (!this.note.id) { return; }
+
+    this.noteService.delete(this.note.id);
+    this.show = false;
+  }
+
+  onColorSelect(color: string) {
+    if (!this.note) { return; }
+
+    this.note.color = color;
+  }
 }

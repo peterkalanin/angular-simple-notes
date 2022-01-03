@@ -15,7 +15,6 @@ export class NoteComponent implements OnInit {
   @Output() noteEdit: EventEmitter<Note> = new EventEmitter<Note>();
 
   @ViewChild('controlPanel') controlPanel!: ElementRef;
-  @ViewChild('palettePicker') palettePicker!: PalettePickerComponent;
 
   constructor(private noteService: NoteService) { }
 
@@ -38,11 +37,6 @@ export class NoteComponent implements OnInit {
       return;
     }
     this.noteService.delete(this.note.id);
-  }
-
-  onPaletePickerClick() {
-    this.palettePicker.show = true;
-    console.log(this.palettePicker)
   }
 
   onColorSelect(color: string) {
