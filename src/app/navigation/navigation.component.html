@@ -9,7 +9,10 @@
     border-b border-gray-200
   "
 >
-  <div class="flex items-center flex-shrink-0 text-gray-800 mr-10">
+  <a
+    class="flex items-center flex-shrink-0 text-gray-800 mr-10"
+    [routerLink]="['/dashboard']"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
@@ -65,7 +68,7 @@
     >
       Poznámky
     </span>
-  </div>
+  </a>
   <div class="block lg:hidden">
     <button
       class="
@@ -92,8 +95,7 @@
   </div>
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a
-        [routerLink]="['/dashboard']"
+      <!-- <a
         class="
           block
           rounded
@@ -108,7 +110,7 @@
         "
       >
         Nástenka
-      </a>
+      </a> -->
     </div>
   </div>
 </nav>
