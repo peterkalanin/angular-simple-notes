@@ -4,6 +4,7 @@ export class Note {
     content: string[] = [''];
     contentString?: string;
     color: string;
+    lastEdit?: Date;
 
     constructor(params: INote) {
         this.id = params.id;
@@ -27,4 +28,5 @@ export interface INote {
     content?: string[];
     contentString?: string;
     color?: string;
+    lastEdit?: Date;
 }
