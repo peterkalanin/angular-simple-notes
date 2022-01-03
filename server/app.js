@@ -10,12 +10,84 @@ app.use(bodyParser.json());
 const distPath = path.join(__dirname, "../dist");
 app.use(express.static(distPath));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
-
 app.get("/api/ping", (req, res) => {
   res.status(200).json({ response: "pong" });
+});
+
+function uuidv4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+const notes = [
+  {
+    id: uuidv4(),
+    title: "Prvá poznámka",
+    content: ["Moja prvá poznámka"],
+    color: "bg-white",
+  },
+  {
+    id: uuidv4(),
+    content: ["Test poznámka"],
+    color: "bg-white",
+  },
+];
+
+/**
+ * Get all
+ */
+app.get("/api/notes", (req, res) => {
+  res.status(200).json(notes);
+});
+
+/**
+ * Create
+ */
+app.put("/api/note", (req, res) => {
+  const newNote = req.body;
+  newNote.id = uuidv4();
+  notes.push(newNote);
+  res.status(200).json(notes);
+});
+
+/**
+ * Edit
+ */
+app.post("/api/note/:id", (req, res) => {
+  const editNote = req.body;
+
+  const findIndex = notes.findIndex((note) => note.id == req.params.id);
+  if (findIndex > -1) {
+    notes[findIndex] = editNote;
+    res.status(200).json(notes);
+  } else {
+    res.status(404).json({
+      error: "Note not found!",
+    });
+  }
+});
+
+/**
+ * Delete
+ */
+app.delete("/api/note/:id", (req, res) => {
+  const findIndex = notes.findIndex((note) => note.id == req.params.id);
+  if (findIndex > -1) {
+    notes.splice(findIndex, 1);
+    res.status(200).json(notes);
+  } else {
+    res.status(404).json({
+      error: "Note not found!",
+    });
+  }
+});
+
+app.all("/*", function (req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendFile("index.html", { root: distPath });
 });
 
 const server = app.listen(APP_PORT, () => {

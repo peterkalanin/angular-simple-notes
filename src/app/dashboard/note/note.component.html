@@ -1,0 +1,37 @@
+<div class="group cursor-pointer h-full" (click)="onCardClick($event)">
+  <div
+    class="
+      p-4
+      pb-2
+      h-full
+      w-full
+      rounded-lg
+      border border-transparent
+      shadow
+      group-hover:shadow-xl
+      relative
+      duration-150
+      transition-all
+      flex flex-col
+    "
+    [ngClass]="note.color || 'bg-white'"
+    [class.border-gray-200]="note.color == 'bg-white'"
+  >
+    <div *ngIf="note.title" class="text-gray-900 text-xl font-semibold mb-1">
+      {{ note.title }}
+    </div>
+    <div class="flex-1">
+      <div *ngFor="let line of note.content">{{ line }}</div>
+    </div>
+
+    <div #controlPanel>
+      <app-note-control-panel
+        hasGroup
+        hasDelete
+        (colorSelect)="onColorSelect($event)"
+        (delete)="onDelete()"
+      >
+      </app-note-control-panel>
+    </div>
+  </div>
+</div>

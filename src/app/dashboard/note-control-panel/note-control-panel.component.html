@@ -1,0 +1,128 @@
+<div
+  class="
+    flex
+    gap-2
+    mt-2
+    -mx-2
+    group-hover:opacity-100
+    duration-150
+    transition-all
+    relative
+  "
+  [class.opacity-0]="hasGroup"
+  [class.opacity-100]="!hasGroup"
+>
+  <div class="flex flex-1 gap-2">
+    <button
+      class="
+        bg-transparent
+        hover:bg-gray-700 hover:bg-opacity-20
+        bg-opacity-25
+        rounded-full
+        p-2
+        w-10
+        h-10
+      "
+      (click)="onPaletePickerClick()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="24"
+        height="24"
+        viewBox="0 0 172 172"
+      >
+        <g
+          fill="none"
+          fill-rule="nonzero"
+          stroke="none"
+          stroke-width="1"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray=""
+          stroke-dashoffset="0"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        >
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g fill="#4b5563">
+            <path
+              d="M80.625,10.75c-38.54882,0 -69.875,31.32618 -69.875,69.875v5.375c0,11.7998 9.7002,21.5 21.5,21.5h5.375c8.98633,0 16.125,7.13868 16.125,16.125v5.375c0,11.7998 9.7002,21.5 21.5,21.5h5.375c38.54883,0 69.875,-31.32617 69.875,-69.875c0,-38.54882 -31.32617,-69.875 -69.875,-69.875zM80.625,21.5c32.71192,0 59.125,26.41308 59.125,59.125c0,32.71192 -26.41308,59.125 -59.125,59.125h-5.375c-6.00489,0 -10.75,-4.74511 -10.75,-10.75v-5.375c0,-14.78125 -12.09375,-26.875 -26.875,-26.875h-5.375c-6.00489,0 -10.75,-4.74511 -10.75,-10.75v-5.375c0,-32.71192 26.41308,-59.125 59.125,-59.125zM75.25,32.25c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM107.5,43c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM43,53.75c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM118.25,75.25c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75zM96.75,107.5c-5.9209,0 -10.75,4.8291 -10.75,10.75c0,5.9209 4.8291,10.75 10.75,10.75c5.9209,0 10.75,-4.8291 10.75,-10.75c0,-5.9209 -4.8291,-10.75 -10.75,-10.75z"
+            ></path>
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+  <div class="flex flex-1 gap-2 justify-end">
+    <button
+      *ngIf="hasDelete"
+      class="
+        bg-transparent
+        hover:bg-gray-700 hover:bg-opacity-20
+        rounded-full
+        p-2
+        w-10
+        h-10
+      "
+      (click)="onDelete()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="24"
+        height="24"
+        viewBox="0 0 172 172"
+        class="fill-gray-600"
+      >
+        <g
+          fill="none"
+          fill-rule="nonzero"
+          stroke="none"
+          stroke-width="1"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray=""
+          stroke-dashoffset="0"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        >
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g fill="#4b5563">
+            <path
+              d="M71.66667,14.33333l-7.16667,7.16667h-43v14.33333h7.95052l12.77962,109.33366v0.05599c0.939,7.07108 7.07882,12.44368 14.20736,12.44368h59.111c7.12853,0 13.26835,-5.37269 14.20736,-12.44368l0.014,-0.05599l12.77962,-109.33366h7.95052v-14.33333h-43l-7.16667,-7.16667zM43.89583,35.83333h84.20833l-12.55566,107.5h-59.111z"
+            ></path>
+          </g>
+        </g>
+      </svg>
+    </button>
+    <button
+      *ngIf="hasClose"
+      class="
+        bg-transparent
+        text-gray-600
+        hover:bg-gray-700 hover:bg-opacity-20
+        bg-opacity-25
+        rounded
+        px-4
+      "
+      (click)="onClose()"
+    >
+      <span>Zavrieť</span>
+    </button>
+  </div>
+</div>
+<div>
+  <app-palette-picker #palettePicker (colorSelect)="onColorSelect($event)">
+  </app-palette-picker>
+</div>

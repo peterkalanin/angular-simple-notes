@@ -1,0 +1,5 @@
+<div class="py-20 w-full md:px-12 lg:px-20 px-2">
+  <app-new-note></app-new-note>
+  <app-note-board (noteEdit)="onModalOpen($event)"></app-note-board>
+</div>
+<app-note-modal #noteModal (close)="onModalClose($event)"></app-note-modal>
