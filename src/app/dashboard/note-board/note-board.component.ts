@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter, HostBinding } from '@angular/core';
 import { Note } from 'src/app/models/note.model';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -7,10 +7,12 @@ import { NoteService } from 'src/app/services/note.service';
   templateUrl: './note-board.component.html',
   styleUrls: ['./note-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'grid gap-8', 'style': 'grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));' }
+  host: { 'class': 'gap-8', 'style': 'grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));' }
 })
 export class NoteBoardComponent implements OnInit {
-  notes: Note[] = []
+  notes: Note[] = [];
+
+  @HostBinding('class') class = 'grid';
 
   @Output() noteEdit: EventEmitter<Note> = new EventEmitter<Note>();
 
@@ -19,6 +21,11 @@ export class NoteBoardComponent implements OnInit {
   ngOnInit(): void {
     this.noteService.model$.subscribe(notes => {
       this.notes = notes;
+      if (this.notes.length == 0) {
+        this.class = 'block';
+      } else {
+        this.class = 'grid';
+      }
       this.cd.markForCheck();
     });
     this.noteService.getAll();
