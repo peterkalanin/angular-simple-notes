@@ -34,7 +34,7 @@
       bg-transparent
     "
     style="box-shadow: none !important"
-    placeholder="Názov..."
+    placeholder="Title..."
   />
   <textarea
     #textarea
@@ -48,11 +48,14 @@
       px-0
       placeholder:font-semibold
       bg-transparent
+      max-h-60
+      overflow-auto
     "
     [class]="isActive ? '' : 'max-h-11'"
     [cols]="isActive ? 3 : 0"
+    (input)="onTextareaChange($event)"
     style="box-shadow: none !important"
-    placeholder="Napíšte poznámku..."
+    placeholder="Write note..."
   ></textarea>
   <div *ngIf="isActive" #controlPanel class="w-full relative">
     <app-note-control-panel

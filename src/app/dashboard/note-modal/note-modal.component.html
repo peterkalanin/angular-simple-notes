@@ -47,7 +47,7 @@
             bg-transparent
           "
           style="box-shadow: none !important"
-          placeholder="Názov..."
+          placeholder="Title..."
         />
         <textarea
           #textarea
@@ -60,10 +60,12 @@
             text-xl
             placeholder:font-semibold
             bg-transparent
+            max-h-96
+            overflow-auto
           "
           (input)="onTextareaChange($event)"
           style="box-shadow: none !important"
-          placeholder="Napíšte poznámku..."
+          placeholder="Write note..."
         ></textarea>
       </form>
       <div #controlPanel class="w-full">

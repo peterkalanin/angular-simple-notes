@@ -13,6 +13,7 @@ import { NoteBoardComponent } from './dashboard/note-board/note-board.component'
 import { NoteModalComponent } from './dashboard/note-modal/note-modal.component';
 import { PalettePickerComponent } from './dashboard/palette-picker/palette-picker.component';
 import { NoteControlPanelComponent } from './dashboard/note-control-panel/note-control-panel.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NoteControlPanelComponent } from './dashboard/note-control-panel/note-c
     NoteBoardComponent,
     NoteModalComponent,
     PalettePickerComponent,
-    NoteControlPanelComponent
+    NoteControlPanelComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

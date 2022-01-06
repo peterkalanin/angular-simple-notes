@@ -21,7 +21,7 @@
       {{ note.title }}
     </div>
     <div class="flex-1">
-      <div *ngFor="let line of note.content">{{ line }}</div>
+      <pre class="font-sans" *ngFor="let line of note.content">{{ line }}</pre>
     </div>
 
     <div #controlPanel>
