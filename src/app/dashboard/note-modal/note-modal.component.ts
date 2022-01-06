@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { INote, Note } from 'src/app/models/note.model';
 import { NoteService } from 'src/app/services/note.service';
@@ -8,10 +8,11 @@ import { NoteService } from 'src/app/services/note.service';
   templateUrl: './note-modal.component.html',
   styleUrls: ['./note-modal.component.scss']
 })
-export class NoteModalComponent implements OnInit {
+export class NoteModalComponent implements OnInit, AfterViewChecked {
   form!: FormGroup;
   show: boolean = false;
   note?: Note;
+  firstCheckAfterOpen = false;
 
   @Output() close: EventEmitter<Note> = new EventEmitter<Note>();
 
@@ -22,6 +23,13 @@ export class NoteModalComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.firstCheckAfterOpen) {
+      this.onTextareaChange();
+      this.firstCheckAfterOpen = false;
+    }
   }
 
   initForm() {
@@ -42,13 +50,17 @@ export class NoteModalComponent implements OnInit {
     }
   }
 
-  onTextareaChange(event: any) {
-    console.log();
+  onTextareaChange(event?: Event) {
+    if (this.textarea) {
+      this.textarea.nativeElement.style.height = this.textarea.nativeElement.scrollHeight + 'px';
+    }
   }
 
   onOpen() {
     this.show = true;
     this.initForm();
+    this.firstCheckAfterOpen = true
+    this.onTextareaChange();
   }
 
   onClose() {

@@ -40,16 +40,16 @@ export class NewNoteComponent implements OnInit {
   }
 
   onLeave() {
-    this.isActive = false;
     this.createNewNote();
     this.note = new Note({});
+    this.resetState();
   }
 
   createNewNote() {
     if (this.form.valid) {
       const note = new Note(this.form.value).toSubmitModel();
       this.noteService.crete(note);
-      this.clearForm();
+      this.resetState();
     }
   }
 
@@ -63,6 +63,17 @@ export class NewNoteComponent implements OnInit {
     if (!colorFc) { return; }
     colorFc.setValue(color);
     this.note.color = color;
+  }
+
+  onTextareaChange(event?: Event) {
+    this.textarea.nativeElement.style.height = this.textarea.nativeElement.scrollHeight + 'px';
+  }
+
+  resetState() {
+    this.isActive = false;
+    this.onTextareaChange();
+    this.clearForm();
+    this.textarea.nativeElement.style.height = 'auto';
   }
 
 }

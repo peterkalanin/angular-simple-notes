@@ -51,6 +51,7 @@
     "
     [class]="isActive ? '' : 'max-h-11'"
     [cols]="isActive ? 3 : 0"
+    (input)="onTextareaChange($event)"
     style="box-shadow: none !important"
     placeholder="Write note..."
   ></textarea>
