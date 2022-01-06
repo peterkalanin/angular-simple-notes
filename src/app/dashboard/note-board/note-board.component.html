@@ -1,44 +1,46 @@
-<ng-container *ngIf="notes.length > 0; else noNotes">
-  <app-note
-    *ngFor="let note of notes"
-    [note]="note"
-    (noteEdit)="onNoteEdit($event)"
-  >
-  </app-note>
-</ng-container>
-<ng-template #noNotes>
-  <div class="mt-20 md:mt-28 lg:mt-36 flex flex-col items-center">
-    <svg
-      class="w-20 h-20 lg:w-28 lg:h-28 fill-current m-4 text-gray-400"
-      xmlns="http://www.w3.org/2000/svg"
-      x="0px"
-      y="0px"
-      width="24"
-      height="24"
-      viewBox="0 0 226 226"
+<ng-container *ngIf="!loading">
+  <ng-container *ngIf="notes.length > 0; else noNotes">
+    <app-note
+      *ngFor="let note of notes"
+      [note]="note"
+      (noteEdit)="onNoteEdit($event)"
     >
-      <g
-        stroke="none"
-        stroke-width="1"
-        stroke-linecap="butt"
-        stroke-linejoin="miter"
-        stroke-miterlimit="10"
-        stroke-dasharray=""
-        stroke-dashoffset="0"
-        font-family="none"
-        font-weight="none"
-        font-size="none"
-        text-anchor="none"
-        style="mix-blend-mode: normal"
+    </app-note>
+  </ng-container>
+  <ng-template #noNotes>
+    <div class="mt-20 md:mt-28 lg:mt-36 flex flex-col items-center">
+      <svg
+        class="w-20 h-20 lg:w-28 lg:h-28 fill-current m-4 text-gray-400"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="24"
+        height="24"
+        viewBox="0 0 226 226"
       >
-        <path d="M0,226v-226h226v226z" fill="none"></path>
-        <path
-          d="M47.08333,28.25c-10.40542,0 -18.83333,8.42792 -18.83333,18.83333v131.83333c0,10.40542 8.42792,18.83333 18.83333,18.83333h94.16667l56.5,-56.5v-94.16667c0,-10.40542 -8.42792,-18.83333 -18.83333,-18.83333zM47.08333,47.08333h131.83333v84.75h-47.08333v47.08333h-84.75zM65.91667,65.91667v18.83333h94.16667v-18.83333zM65.91667,103.58333v18.83333h47.08333v-18.83333z"
-        ></path>
-      </g>
-    </svg>
-    <span class="text-gray-500 text-base md:text-xl lg:text-2xl"
-      >You have no notes. Start by creating the first note.</span
-    >
-  </div>
-</ng-template>
+        <g
+          stroke="none"
+          stroke-width="1"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray=""
+          stroke-dashoffset="0"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        >
+          <path d="M0,226v-226h226v226z" fill="none"></path>
+          <path
+            d="M47.08333,28.25c-10.40542,0 -18.83333,8.42792 -18.83333,18.83333v131.83333c0,10.40542 8.42792,18.83333 18.83333,18.83333h94.16667l56.5,-56.5v-94.16667c0,-10.40542 -8.42792,-18.83333 -18.83333,-18.83333zM47.08333,47.08333h131.83333v84.75h-47.08333v47.08333h-84.75zM65.91667,65.91667v18.83333h94.16667v-18.83333zM65.91667,103.58333v18.83333h47.08333v-18.83333z"
+          ></path>
+        </g>
+      </svg>
+      <span class="text-gray-500 text-base md:text-xl lg:text-2xl"
+        >You have no notes. Start by creating the first note.</span
+      >
+    </div>
+  </ng-template>
+</ng-container>

@@ -11,7 +11,7 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class NoteBoardComponent implements OnInit {
   notes: Note[] = [];
-
+  loading: boolean = true;
   @HostBinding('class') class = 'grid';
 
   @Output() noteEdit: EventEmitter<Note> = new EventEmitter<Note>();
@@ -20,6 +20,7 @@ export class NoteBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.noteService.model$.subscribe(notes => {
+      this.loading = false;
       this.notes = notes;
       if (this.notes.length == 0) {
         this.class = 'block';
